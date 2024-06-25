@@ -4,12 +4,23 @@ import java.security.spec.ECField;
 public class Main {
 
     public static void main(String[] args) {
+        Counter counter = new Counter();
+       Thread thread1 = new Thread(new MyRunnable(counter));
+       Thread thread2 = new Thread(new MyRunnable(counter));
+
+       thread1.start();
+
+       thread2.start();
+
        try {
-           helper();
+           thread1.join(); //wait for thread1 to finish
+           thread2.join(); // wait for thread2 to finish
        }
-       catch (IndexOutOfBoundsException e) {
-           System.out.println("catched execption");
+       catch (InterruptedException e) {
+           e.printStackTrace();
        }
+
+        System.out.println("Finally completed with count " + counter.getCount());
     }
 
 

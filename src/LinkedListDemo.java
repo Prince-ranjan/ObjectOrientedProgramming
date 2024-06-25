@@ -13,6 +13,7 @@ public class LinkedListDemo {
         linkedList.add(3);
 
         System.out.println("LinkedList = " + linkedList);
+
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
